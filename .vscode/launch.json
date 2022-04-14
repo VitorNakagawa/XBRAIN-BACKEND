@@ -1,0 +1,15 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-PaymentSystemApplication<payment-system>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.vitor.paymentsystem.PaymentSystemApplication",
+            "projectName": "payment-system",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
