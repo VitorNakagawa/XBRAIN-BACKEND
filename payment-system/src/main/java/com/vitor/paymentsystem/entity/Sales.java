@@ -1,7 +1,5 @@
 package com.vitor.paymentsystem.entity;
 
-
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -13,48 +11,53 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Table(name = "sales")
 @Entity
+@EnableJpaRepositories
+@EnableJpaAuditing
 
-public class Sales implements Serializable{
+public class Sales implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long sale_id;
 
-    @Temporal(TemporalType.DATE)
-    @Column( name="saleDate", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "saleDate")
     private Date saleDate;
 
-    @Column(name= "value", nullable=false)
+    @Column(name = "value", nullable = false)
     private Float value;
 
     @ManyToOne
-    @JoinColumn(name="sellerID", referencedColumnName = "id")
-    private Seller sellerID;
+    @JoinColumn(name = "seller_id", referencedColumnName = "seller_id")
+    private Seller seller_id;
 
     @ManyToOne
-    @JoinColumn(name="sellerName", referencedColumnName = "name")
+    @JoinColumn(name = "sellerName", referencedColumnName = "name")
     private Seller sellerName;
-
 
     @PrePersist
     private void onCreate() {
-    saleDate = new Date();
-}
-
-
-
-
+        saleDate = new Date();
+    }
 }
