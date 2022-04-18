@@ -3,7 +3,6 @@ package com.vitor.paymentsystem.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -51,13 +50,13 @@ public class Sales  implements Serializable {
     @Column(name = "value", nullable = false)
     private Float value;
 
-    @ManyToOne(cascade= CascadeType.ALL)
-    @JoinColumn(name = "seller_id", referencedColumnName = "seller_id")
-    private Seller seller_id;
+    @ManyToOne
+    @JoinColumn(name = "seller_id")
+    private Seller seller;
 
-    // @ManyToOne
-    // @JoinColumn(name = "seller_name", referencedColumnName = "name")
-    // private Seller seller_name;
+    @ManyToOne
+    @JoinColumn(name = "seller_name", referencedColumnName = "name")
+    private Seller seller_name;
 
     @PrePersist
     private void onCreate() {

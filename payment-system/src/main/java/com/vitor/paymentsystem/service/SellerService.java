@@ -17,9 +17,9 @@ public class SellerService {
     public Seller save( Seller seller ){
         return sellerRepository.save(seller);
     }
-
+    
     public List<Seller> listAllSellers(){
-        return sellerRepository.findAll();
+        return sellerRepository.findSellers();
     }
     
 }

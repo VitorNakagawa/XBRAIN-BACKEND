@@ -26,7 +26,6 @@ public class SellerController {
     public Seller save(@RequestBody Seller seller) {
         return sellerService.save(seller);
     }
-
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
     public List<Seller> listAllSellers() {
